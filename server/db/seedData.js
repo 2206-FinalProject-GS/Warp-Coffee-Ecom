@@ -14,6 +14,7 @@ async function dropTables() {
        DROP TABLE IF EXISTS Product;
        DROP TYPE IF EXISTS coffeeRoast;
        DROP TYPE IF EXISTS coffeeGrind;
+       DROP TYPE IF EXISTS product_weight;
        DROP TYPE IF EXISTS order_status;
        DROP TYPE IF EXISTS coffeeCountry;
        DROP TABLE IF EXISTS Merchants;
@@ -32,7 +33,7 @@ async function createTables() {
     await client.query(`
        CREATE TYPE coffeeRoast AS ENUM('Light','Mild', 'Medium', 'Dark');
        CREATE TYPE coffeeGrind AS ENUM('Whole Beans', 'Ground', 'Instant');
-       CREATE TYPE order_status AS ENUM('pending', 'settled');
+       CREATE TYPE product_weight AS ENUM('0.25 Kg', '0.5 Kg', '1 Kg');
        CREATE TYPE coffeeCountry AS ENUM('Brazil','Vietnam','Colombia','Indonesia','Ethiopia','Honduras','India','Uganda');
 
         CREATE TABLE users (
@@ -57,7 +58,8 @@ async function createTables() {
             weight INTEGER,
             roast coffeeRoast NOT NULL,
             grind coffeeGrind,
-            country coffeeCountry      
+            country coffeeCountry,
+            product_wt product_weight      
           );
           CREATE TABLE Cart (
             id SERIAL PRIMARY KEY,
@@ -121,9 +123,21 @@ async function createInitialMerchants() {
       Admin: true,
     },
     {
-      username: "randy12",
-      password: "randy1234",
-      brand: "Randy's Coffee",
+      username: "jacob",
+      password: "jacob1234",
+      brand: "Happyfeet Coffee",
+      Admin: true,
+    },
+    {
+      username: "brandon",
+      password: "brandon1234",
+      brand: "Metalcup Coffee",
+      Admin: true,
+    },
+    {
+      username: "garrett",
+      password: "garrett1234",
+      brand: "Imperium Coffee",
       Admin: true,
     },
   ];
@@ -140,7 +154,6 @@ async function createInitialProducts() {
   const productsToCreate = [
     {
       creatorId: 1,
-      country: "Brazil",
       name: "Coffee#1",
       description: "coffee stuff description 1",
       price: 20,
@@ -152,7 +165,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 1,
-      country: "Vietnam",
       name: "Coffee#2",
       description: "coffee stuff description 2",
       price: 55,
@@ -164,7 +176,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 2,
-      country: "Colombia",
       name: "Coffee#3",
       description: "coffee stuff description 3",
       price: 15,
@@ -176,8 +187,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 3,
-     country: "Ethiopia",
-
       name: "Coffee#4",
       description: "coffee stuff description 4",
       price: 10,
@@ -189,7 +198,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 3,
-      country: "Vietnam",
       name: "Coffee#5",
       description: "coffee stuff description 5",
       price: 15,
@@ -199,7 +207,151 @@ async function createInitialProducts() {
       grind: "Whole Beans",
       country: "Vietnam",
     },
-    
+    {
+      creatorId: 5,
+      name: "Coffee#5",
+      description: "coffee stuff description 6",
+      price: 15,
+      inventory: 15,
+      weight: 30,
+      roast: "Medium",
+      grind: "Whole Beans",
+      country: "Vietnam",
+    },
+    {
+      creatorId: 1,
+      name: "Coffee#1",
+      description: "coffee stuff description 7",
+      price: 20,
+      inventory: 78,
+      weight: 5,
+      roast: "Medium",
+      grind: "Ground",
+      country: "Brazil",
+    },
+    {
+      creatorId: 1,
+      name: "Coffee#2",
+      description: "coffee stuff description 8",
+      price: 55,
+      inventory: 99,
+      weight: 2,
+      roast: "Dark",
+      grind: "Ground",
+      country: "Vietnam",
+    },
+    {
+      creatorId: 2,
+      name: "Coffee#3",
+      description: "coffee stuff description 9",
+      price: 15,
+      inventory: 50,
+      weight: 1,
+      roast: "Mild",
+      grind: "Whole Beans",
+      country: "Colombia",
+    },
+    {
+      creatorId: 3,
+      name: "Coffee#4",
+      description: "coffee stuff description 10",
+      price: 10,
+      inventory: 2,
+      weight: 10,
+      roast: "Light",
+      grind: "Instant",
+       country: "Ethiopia",
+    },
+    {
+      creatorId: 3,
+      name: "Coffee#5",
+      description: "coffee stuff description 11",
+      price: 15,
+      inventory: 15,
+      weight: 30,
+      roast: "Medium",
+      grind: "Whole Beans",
+      country: "Vietnam",
+    },
+    {
+      creatorId: 3,
+      name: "Coffee#5",
+      description: "coffee stuff description 12",
+      price: 15,
+      inventory: 15,
+      weight: 30,
+      roast: "Medium",
+      grind: "Whole Beans",
+      country: "Vietnam",
+    },
+    {
+      creatorId: 1,
+      name: "Coffee#1",
+      description: "coffee stuff description 13",
+      price: 20,
+      inventory: 78,
+      weight: 5,
+      roast: "Medium",
+      grind: "Ground",
+      country: "Brazil",
+    },
+    {
+      creatorId: 6,
+      name: "Coffee#2",
+      description: "coffee stuff description 14",
+      price: 55,
+      inventory: 99,
+      weight: 2,
+      roast: "Dark",
+      grind: "Ground",
+      country: "Vietnam",
+    },
+    {
+      creatorId: 6,
+      name: "Chaos: ",
+      description: "Chaotic  No 15",
+      price: 15,
+      inventory: 50,
+      weight: 1,
+      roast: "Mild",
+      grind: "Whole Beans",
+      country: "Colombia",
+    },
+    {
+      creatorId: 6,
+      name: "Chaos: Khorny Khoffee",
+      description: "Chaotic blend of Dark flavors. Work through your problems with a rage.  No 16",
+      price: 10,
+      inventory: 2,
+      weight: 10,
+      roast: "Dark",
+      grind: "Instant",
+       country: "Honduras",
+    },
+    {
+      creatorId: 6,
+      name: "Emperor's Daily ",
+      description: "Imperium approved. No added Chaos. Smooth and Simple. No 17",
+      price: 10,
+      inventory: 55,
+      weight: 10,
+      roast: "Dark",
+      grind: "Ground",
+      country: "India",
+      product_wt: "1 Kg",
+    },
+    {
+      creatorId: 6,
+      name: "Warhawk",
+      description: "Run through your problems with the Khan's approval. No 18",
+      price: 25,
+      inventory: 15,
+      weight: 30,
+      roast: "Medium",
+      grind: "Whole Beans",
+      country: "Vietnam",
+      product_wt: "0.5 Kg",
+    },
   ];
   const products = await Promise.all(
     productsToCreate.map((product) => createProduct(product))
@@ -266,7 +418,7 @@ async function createInitialCart() {
         productId: product4.id,
         cartId: order3.id,
         quantity: 1,
-        price: 100
+        price: 10
       },
     ];
     const cartItem = await Promise.all(
