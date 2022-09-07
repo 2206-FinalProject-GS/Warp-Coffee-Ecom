@@ -14,8 +14,7 @@ async function dropTables() {
        DROP TABLE IF EXISTS Product;
        DROP TYPE IF EXISTS coffeeRoast;
        DROP TYPE IF EXISTS coffeeGrind;
-       DROP TYPE IF EXISTS product_weight;
-       DROP TYPE IF EXISTS order_status;
+       DROP TYPE IF EXISTS productwt;
        DROP TYPE IF EXISTS coffeeCountry;
        DROP TABLE IF EXISTS Merchants;
        DROP TABLE IF EXISTS users;
@@ -33,7 +32,7 @@ async function createTables() {
     await client.query(`
        CREATE TYPE coffeeRoast AS ENUM('Light','Mild', 'Medium', 'Dark');
        CREATE TYPE coffeeGrind AS ENUM('Whole Beans', 'Ground', 'Instant');
-       CREATE TYPE product_weight AS ENUM('0.25 Kg', '0.5 Kg', '1 Kg');
+       CREATE TYPE productwt AS ENUM('0.25 lb', '0.5 lb', '1 lb', '5 lb');
        CREATE TYPE coffeeCountry AS ENUM('Brazil','Vietnam','Colombia','Indonesia','Ethiopia','Honduras','India','Uganda');
 
         CREATE TABLE users (
@@ -59,7 +58,7 @@ async function createTables() {
             roast coffeeRoast NOT NULL,
             grind coffeeGrind,
             country coffeeCountry,
-            product_wt product_weight      
+            product_wt productwt NOT NULL     
           );
           CREATE TABLE Cart (
             id SERIAL PRIMARY KEY,
@@ -162,6 +161,7 @@ async function createInitialProducts() {
       roast: "Medium",
       grind: "Ground",
       country: "Brazil",
+      product_wt: "0.5 lb",
     },
     {
       creatorId: 1,
@@ -173,6 +173,7 @@ async function createInitialProducts() {
       roast: "Dark",
       grind: "Ground",
       country: "Vietnam",
+      product_wt: "0.5 lb",
     },
     {
       creatorId: 2,
@@ -184,6 +185,7 @@ async function createInitialProducts() {
       roast: "Mild",
       grind: "Whole Beans",
       country: "Colombia",
+      product_wt: "0.5 lb",
     },
     {
       creatorId: 3,
@@ -195,6 +197,7 @@ async function createInitialProducts() {
       roast: "Light",
       grind: "Instant",
        country: "Ethiopia",
+       product_wt: "0.5 lb",
     },
     {
       creatorId: 3,
@@ -206,6 +209,7 @@ async function createInitialProducts() {
       roast: "Medium",
       grind: "Whole Beans",
       country: "Vietnam",
+      product_wt: "0.5 lb",
     },
     {
       creatorId: 5,
@@ -217,6 +221,7 @@ async function createInitialProducts() {
       roast: "Medium",
       grind: "Whole Beans",
       country: "Vietnam",
+      product_wt: "0.25 lb",
     },
     {
       creatorId: 1,
@@ -228,6 +233,7 @@ async function createInitialProducts() {
       roast: "Medium",
       grind: "Ground",
       country: "Brazil",
+      product_wt: "0.25 lb",
     },
     {
       creatorId: 1,
@@ -239,6 +245,7 @@ async function createInitialProducts() {
       roast: "Dark",
       grind: "Ground",
       country: "Vietnam",
+      product_wt: "1 lb",
     },
     {
       creatorId: 2,
@@ -250,6 +257,7 @@ async function createInitialProducts() {
       roast: "Mild",
       grind: "Whole Beans",
       country: "Colombia",
+      product_wt: "1 lb",
     },
     {
       creatorId: 3,
@@ -261,9 +269,10 @@ async function createInitialProducts() {
       roast: "Light",
       grind: "Instant",
        country: "Ethiopia",
+       product_wt: "0.5 lb",
     },
     {
-      creatorId: 3,
+      creatorId: 5,
       name: "Coffee#5",
       description: "coffee stuff description 11",
       price: 15,
@@ -272,85 +281,91 @@ async function createInitialProducts() {
       roast: "Medium",
       grind: "Whole Beans",
       country: "Vietnam",
+      product_wt: "0.5 lb",
     },
     {
-      creatorId: 3,
-      name: "Coffee#5",
+      creatorId: 5,
+      name: "Coffee#12",
       description: "coffee stuff description 12",
       price: 15,
       inventory: 15,
       weight: 30,
       roast: "Medium",
-      grind: "Whole Beans",
-      country: "Vietnam",
+      grind: "Ground",
+      country: "Uganda",
+      product_wt: "1 lb",
     },
     {
-      creatorId: 1,
-      name: "Coffee#1",
-      description: "coffee stuff description 13",
+      creatorId: 5,
+      name: "Changeling",
+      description: "This blend may be light in taste, but changes in profile to a light medium. No 13",
       price: 20,
       inventory: 78,
       weight: 5,
-      roast: "Medium",
+      roast: "Light",
       grind: "Ground",
-      country: "Brazil",
+      country: "Uganda",
+      product_wt: "0.25 lb",
     },
     {
-      creatorId: 6,
-      name: "Coffee#2",
-      description: "coffee stuff description 14",
-      price: 55,
+      creatorId: 5,
+      name: "Blackest Night",
+      description: "Work through the Night with this blend. No 14",
+      price: 40,
       inventory: 99,
       weight: 2,
       roast: "Dark",
-      grind: "Ground",
-      country: "Vietnam",
+      grind: "Whole Beans",
+      country: "Brazil",
+      product_wt: "1 lb",
     },
     {
       creatorId: 6,
-      name: "Chaos: ",
-      description: "Chaotic  No 15",
-      price: 15,
+      name: "Royal Blue Flag",
+      description: "Emperor's Favorite blend of light roast and blue berries.  No 15",
+      price: 55,
       inventory: 50,
-      weight: 1,
+      weight: 5,
       roast: "Mild",
       grind: "Whole Beans",
       country: "Colombia",
+      product_wt: "0.25 lb",
     },
     {
       creatorId: 6,
-      name: "Chaos: Khorny Khoffee",
-      description: "Chaotic blend of Dark flavors. Work through your problems with a rage.  No 16",
-      price: 10,
+      name: "Angry Apple",
+      description: "Chaotic blend of dark roast and red apple flavors. Work through your problems with a rage.  No 16",
+      price: 25,
       inventory: 2,
       weight: 10,
       roast: "Dark",
       grind: "Instant",
        country: "Honduras",
+       product_wt: "5 lb",
     },
     {
       creatorId: 6,
       name: "Emperor's Daily ",
       description: "Imperium approved. No added Chaos. Smooth and Simple. No 17",
-      price: 10,
+      price: 20,
       inventory: 55,
       weight: 10,
       roast: "Dark",
       grind: "Ground",
       country: "India",
-      product_wt: "1 Kg",
+      product_wt: "5 lb",
     },
     {
       creatorId: 6,
       name: "Warhawk",
       description: "Run through your problems with the Khan's approval. No 18",
-      price: 25,
+      price: 35,
       inventory: 15,
       weight: 30,
       roast: "Medium",
       grind: "Whole Beans",
       country: "Vietnam",
-      product_wt: "0.5 Kg",
+      product_wt: "0.5 lb",
     },
   ];
   const products = await Promise.all(
@@ -393,8 +408,8 @@ async function createInitialCart() {
   }
 
   async function createInitialcartItem() {
-    const selleruser = await getMerchantByUsername(`benny12`);
-    console.log(selleruser,"Starting to create CART ORDER");
+    const buyeruser = await getUserByUsername(`sandra`);
+    console.log(buyeruser,"Starting to create CART ORDER");
     const [order1, order2, order3] = await getCart();
   console.log(order3,"Finsihed getting Cart")
   const [product1, product2, product3, product4, product5] = await getAllProducts();

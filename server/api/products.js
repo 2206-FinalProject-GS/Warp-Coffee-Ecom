@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router()
-const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName } = require("../db/Product");
+const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName, getProductsByCategoryGrind, getProductsByCategoryRoast, getProductsByCategoryCountry, getProductsByCategoryWeight } = require("../db/Product");
 const { requireMerchant } = require("./utils");
 
 
@@ -84,6 +84,27 @@ router.get("/", async (req, res, next) => {
   router.get('/:productId', async (req,res,next )=> {
     const {productId} = req.params
     const getProduct = await getProductById(productId)
+    res.send(getProduct)
+  })
+
+  router.get('/grind=:grind', async (req,res,next )=> {
+    const {grind} = req.params
+    const getProduct = await getProductsByCategoryGrind(grind)
+    res.send(getProduct)
+  })
+  router.get('/roast=:roast', async (req,res,next )=> {
+    const {roast} = req.params
+    const getProduct = await getProductsByCategoryRoast(roast)
+    res.send(getProduct)
+  })
+  router.get('/country=:country', async (req,res,next )=> {
+    const {country} = req.params
+    const getProduct = await getProductsByCategoryCountry(country)
+    res.send(getProduct)
+  })
+  router.get('/weight=:weight', async (req,res,next )=> {
+    const {productwt} = req.params
+    const getProduct = await getProductsByCategoryWeight(productwt)
     res.send(getProduct)
   })
   module.exports = router
