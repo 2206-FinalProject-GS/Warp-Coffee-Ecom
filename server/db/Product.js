@@ -7,7 +7,6 @@ async function createProduct({
   description,
   price,
   inventory,
-  weight,
   roast,
   grind,
   country,
@@ -18,8 +17,8 @@ async function createProduct({
       rows: [Products],
     } = await client.query(
       `
-      INSERT INTO Product("creatorId", name, description, price, inventory, weight, roast, grind, country, product_wt) 
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
+      INSERT INTO Product("creatorId", name, description, price, inventory, roast, grind, country, product_wt) 
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) 
       RETURNING *;
     `,
       [
@@ -28,7 +27,6 @@ async function createProduct({
         description,
         price,
         inventory,
-        weight,
         roast,
         grind,
         country,
@@ -40,7 +38,6 @@ async function createProduct({
       description,
       price,
       inventory,
-      weight,
       roast,
       grind,
       country,
