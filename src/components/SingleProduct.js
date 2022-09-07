@@ -95,7 +95,7 @@ const SingleProduct = ({ isAdmin, isLoggedIn }) => {
             </div>
             <div className="flex border-t border-gray-200 py-2">
               <span className="text-white ">Weight</span>
-              <span className="ml-auto  text-white">{getProduct.weight}</span>
+              <span className="ml-auto  text-white">{getProduct.product_wt}</span>
             </div>
             <div className="flex border-t border-gray-200 py-2">
               <span className="text-white ">Country</span>

@@ -6,7 +6,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const [weight, setWeight] = useState("");
   const [roast, setRoast] = useState("");
   const [grind, setGrind] = useState("");
   const [country, setCountry] = useState("");
@@ -18,7 +18,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
     async function handleSubmit (event) {
         event.preventDefault()
         const token = localStorage.getItem('token')
-        const freshProduct = await createNewProduct(token, name,description, price, weight, roast, grind, inventory, country)
+        const freshProduct = await createNewProduct(token, name,description, price, roast, grind, inventory, country, weight)
         if (freshProduct.error) {
             setError(freshProduct)
         } else {
@@ -49,10 +49,6 @@ const CreateProduct = ({ productsList, setProductsList }) => {
               <input className='flex rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type="text" placeholder='Price' value={price} onChange={(event)=> {setPrice(event.target.value)}}/>
           </label>
           <label className='my-2'>
-          <div className=' lg:flex'> Weight:</div> 
-              <input className='flex rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' value={weight}  placeholder='Weight' type="text"  onChange={(event)=> {setWeight(event.target.value)}}/>
-          </label>
-          <label className='my-2'>
               <select id="roast" className='flex w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' type='text' value={roast} onChange={(event)=> {setRoast(event.target.value)}}>
                 <option defaultValue >--Select Roast--</option>
                 <option value="Light">Light</option>
@@ -81,6 +77,15 @@ const CreateProduct = ({ productsList, setProductsList }) => {
                 <option value="India">India</option>
                 <option value="Uganda">Uganda</option>
 
+              </select>
+          </label>
+          <label className='my-2'>
+              <select id="weight" className='flex w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' type='text' value={weight} onChange={(event)=> {setWeight(event.target.value)}}>
+                <option defaultValue >--Select Weight--</option>
+                <option value="0.25 lb">0.25 lb</option>
+                <option value="0.5 lb">0.5 lb</option>
+                <option value="1 lb">1 lb</option>
+                <option value="5 lb">5 lb</option>
               </select>
           </label>
 

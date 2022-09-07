@@ -57,11 +57,11 @@ export const createNewProduct = async (
   nameProduct,
   description,
   price,
-  weight,
   roast,
   grind,
   inventory,
-  country
+  country,
+  product_wt
 ) => {
   const response = await fetch(`${BASE_URL}/products`, {
     method: "POST",
@@ -73,11 +73,11 @@ export const createNewProduct = async (
       name: nameProduct,
       description,
       price,
-      weight,
       roast,
       grind,
       inventory,
       country,
+      product_wt
     }),
   });
   const result = await response.json();
@@ -173,11 +173,11 @@ export async function updateProduct(
   nameProduct,
   description,
   price,
-  weight,
   roast,
   grind,
   inventory,
-  country
+  country,
+  product_wt
 ) {
   const response = await fetch(`${BASE_URL}/products/${productId}`, {
     method: "PATCH",
@@ -189,11 +189,11 @@ export async function updateProduct(
       name: nameProduct,
       description,
       price,
-      weight,
       roast,
       grind,
       inventory,
       country,
+      product_wt,
     }),
   });
   const result = await response.json();
@@ -327,6 +327,22 @@ export const getOrderHistorybyUserId = async (token, userId) => {
     const result = await response.json();
     return result;
   } catch (error) {
+    throw error;
+  }
+};
+
+export const getProductsByCategoryGrind = async (grind) => {
+  try {
+    const response = await fetch(`${BASE_URL}/products/grind=${grind}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result,"product category")
+    return result;
+  } catch (error) {
+    console.log(error);
     throw error;
   }
 };

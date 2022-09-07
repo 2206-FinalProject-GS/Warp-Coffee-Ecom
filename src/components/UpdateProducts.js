@@ -4,7 +4,7 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const [weight, setWeight] = useState("");
   const [roast, setRoast] = useState("");
   const [grind, setGrind] = useState("");
   const [inventory, setInventory] = useState(0);
@@ -23,11 +23,11 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
       name,
       description,
       price,
-      weight,
       roast,
       grind,
       inventory,
-      country
+      country,
+      weight,
     );
     if (freshProduct.error) {
       setError(freshProduct);
@@ -40,9 +40,9 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
       setName("");
       setDescription("");
       setPrice(0);
-      setWeight(0);
       setRoast("");
       setGrind("");
+      setWeight("");
       setInventory(0);
     }
   }
@@ -90,16 +90,6 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
               value={price}
               onChange={(event) => {
                 setPrice(event.target.value);
-              }}
-            />
-          </label>
-          <label className="l">
-            Weight:
-            <input
-              value={weight}
-              type="text"
-              onChange={(event) => {
-                setWeight(event.target.value);
               }}
             />
           </label>
@@ -157,11 +147,23 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
               <option value="Uganda">Uganda</option>
             </select>
           </label>
-          {/* <label className="flex flex-col">
-
-            Country: 
-            <input type='text' value={country} onChange={(event)=> {setCountry(event.target.value)}}/>
-        </label> */}
+          <label className="my-2">
+            <select
+              id="weight"
+              className="w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10"
+              type="text"
+              value={weight}
+              onChange={(event) => {
+                setWeight(event.target.value);
+              }}
+            >
+             <option defaultValue >--Select Weight--</option>
+                <option value="0.25 lb">0.25 lb</option>
+                <option value="0.5 lb">0.5 lb</option>
+                <option value="1 lb">1 lb</option>
+                <option value="5 lb">5 lb</option>
+            </select>
+          </label>
           <label className="">
             Inventory:
             <input

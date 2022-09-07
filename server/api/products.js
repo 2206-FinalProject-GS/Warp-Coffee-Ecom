@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router()
-const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName } = require("../db/Product");
+const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName, getProductsByCategoryGrind, getProductsByCategoryRoast, getProductsByCategoryCountry, getProductsByCategoryWeight } = require("../db/Product");
 const { requireMerchant } = require("./utils");
 
 
@@ -13,9 +13,9 @@ router.get("/", async (req, res, next) => {
 
   router.post("/", requireMerchant, async (req,res,next) => {
 
-      const {creatorId, name, description, price, inventory, weight, roast, grind, country} = req.body
+      const {creatorId, name, description, price, inventory, roast, grind, country, product_wt} = req.body
       const productData = {
-        creatorId: req.merchant.id, name, description, price, inventory, weight, roast, grind , inventory, country
+        creatorId: req.merchant.id, name, description, price, inventory, roast, grind , inventory, country, product_wt
 
       }
       try {
@@ -54,7 +54,7 @@ router.get("/", async (req, res, next) => {
 
   router.patch("/:productId", requireMerchant, async (req,res,next) => {
     const {productId} = req.params;
-    const {creatorId, name, description, price, inventory, weight, roast, grind, country} = req.body
+    const {creatorId, name, description, price, inventory, roast, grind, country, product_wt} = req.body
     const originalProductId = await getProductById(productId);
     const orginalProductName = await getProductsByName(name);
     try {
@@ -71,7 +71,7 @@ router.get("/", async (req, res, next) => {
       } else {
         const updatedProduct = await updateProduct({productId,
           creatorId: req.merchant.id,
-          name, description, price, inventory, weight, roast, grind, country
+          name, description, price, inventory, roast, grind, country, product_wt
         });
           
           res.send(updatedProduct);
@@ -84,6 +84,27 @@ router.get("/", async (req, res, next) => {
   router.get('/:productId', async (req,res,next )=> {
     const {productId} = req.params
     const getProduct = await getProductById(productId)
+    res.send(getProduct)
+  })
+
+  router.get('/grind=:grind', async (req,res,next )=> {
+    const {grind} = req.params
+    const getProduct = await getProductsByCategoryGrind(grind)
+    res.send(getProduct)
+  })
+  router.get('/roast=:roast', async (req,res,next )=> {
+    const {roast} = req.params
+    const getProduct = await getProductsByCategoryRoast(roast)
+    res.send(getProduct)
+  })
+  router.get('/country=:country', async (req,res,next )=> {
+    const {country} = req.params
+    const getProduct = await getProductsByCategoryCountry(country)
+    res.send(getProduct)
+  })
+  router.get('/weight=:weight', async (req,res,next )=> {
+    const {productwt} = req.params
+    const getProduct = await getProductsByCategoryWeight(productwt)
     res.send(getProduct)
   })
   module.exports = router

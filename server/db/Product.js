@@ -7,17 +7,17 @@ async function createProduct({
   description,
   price,
   inventory,
-  weight,
   roast,
   grind,
-  country
+  country,
+  product_wt
 }) {
   try {
     const {
       rows: [Products],
     } = await client.query(
       `
-      INSERT INTO Product("creatorId", name, description, price, inventory, weight, roast, grind, country) 
+      INSERT INTO Product("creatorId", name, description, price, inventory, roast, grind, country, product_wt) 
       VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) 
       RETURNING *;
     `,
@@ -27,10 +27,10 @@ async function createProduct({
         description,
         price,
         inventory,
-        weight,
         roast,
         grind,
-        country
+        country,
+        product_wt
       ]
     );
     creatorId,
@@ -38,10 +38,10 @@ async function createProduct({
       description,
       price,
       inventory,
-      weight,
       roast,
       grind,
-      country;
+      country,
+      product_wt;
 
     return Products;
   } catch (error) {
@@ -168,6 +168,92 @@ async function getProductsByMerchant( username ) {
   }
 }
 
+
+
+async function getProductsByCategoryWeight(weight) {
+  try {
+    const {
+      rows: [Products],
+    } = await client.query(
+      `
+    SELECT *
+    FROM Product
+    WHERE product_wt=$1;
+    `,
+      [weight]
+    );
+    if (!Products) {
+      return null;
+    }
+    return Products;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getProductsByCategoryRoast(roast) {
+  try {
+    const {
+      rows: [Products],
+    } = await client.query(
+      `
+    SELECT *
+    FROM Product
+    WHERE roast=$1;
+    `,
+      [roast]
+    );
+    if (!Products) {
+      return null;
+    }
+    return Products;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getProductsByCategoryGrind(grind) {
+  try {
+    const {
+      rows: [Products],
+    } = await client.query(
+      `
+    SELECT *
+    FROM Product
+    WHERE grind=$1;
+    `,
+      [grind]
+    );
+    if (!Products) {
+      return null;
+    }
+    return Products;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getProductsByCategoryCountry(country) {
+  try {
+    const {
+      rows: [Products],
+    } = await client.query(
+      `
+    SELECT *
+    FROM Product
+    WHERE country=$1;
+    `,
+      [country]
+    );
+    if (!Products) {
+      return null;
+    }
+    return Products;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
@@ -175,5 +261,9 @@ module.exports = {
   updateProduct,
   destroyProduct,
   getProductById,
-  getProductsByMerchant
+  getProductsByMerchant,
+  getProductsByCategoryWeight,
+  getProductsByCategoryRoast,
+  getProductsByCategoryCountry,
+  getProductsByCategoryGrind,
 };
