@@ -55,7 +55,7 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
   return (
     <div>
       <button
-        className="max-w-fit text-center font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+        className="max-w-fit text-center font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-unbleached-silk hover:bg-black-coffee hover:text-unbleached-silk transition duration-300"
         onClick={buttonClick2}
       >
         EDIT PRODUCT

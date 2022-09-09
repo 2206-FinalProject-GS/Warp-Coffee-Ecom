@@ -30,7 +30,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
     }
 
     return (
-      <div className='bg-gradient-to-t from-rose-300 to-yellow-600 h-screen flex flex-col justify-center items-center pb-24'>
+      <div className=' h-screen flex flex-col justify-center items-center pb-24'>
           <h1 className='font-bold text-3xl' id="addRoutineTitle">Add A Product</h1>
       {error && error.message ? (
         <h3>{error.message}</h3>
@@ -38,18 +38,18 @@ const CreateProduct = ({ productsList, setProductsList }) => {
       <form className='flex flex-col font-medium  ' onSubmit={handleSubmit}>
           <label className='my-2'>
               <div className='sm:hidden md:hidden lg:flex'>Name:</div>
-              <input className='flex rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type='text' placeholder='Name' value={name}  onChange={(event)=> {setName(event.target.value)}}/>
+              <input className='flex rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type='text' placeholder='Name' value={name}  onChange={(event)=> {setName(event.target.value)}}/>
           </label>
           <label className='my-2'>
           <div className='sm:hidden md:hidden lg:flex'>Description:</div> 
-              <input className='flex rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type='text' placeholder='Description' value={description} onChange={(event)=> {setDescription(event.target.value)}}/>
+              <input className='flex rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type='text' placeholder='Description' value={description} onChange={(event)=> {setDescription(event.target.value)}}/>
           </label>
           <label className='my-2'>
           <div className=' lg:flex'>Price:</div> 
-              <input className='flex rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type="text" placeholder='Price' value={price} onChange={(event)=> {setPrice(event.target.value)}}/>
+              <input className='flex rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type="text" placeholder='Price' value={price} onChange={(event)=> {setPrice(event.target.value)}}/>
           </label>
           <label className='my-2'>
-              <select id="roast" className='flex w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' type='text' value={roast} onChange={(event)=> {setRoast(event.target.value)}}>
+              <select id="roast" className='flex w-full text-center rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10' type='text' value={roast} onChange={(event)=> {setRoast(event.target.value)}}>
                 <option defaultValue >--Select Roast--</option>
                 <option value="Light">Light</option>
                 <option value="Mild">Mild</option>
@@ -58,7 +58,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
               </select>
           </label>
           <label className='my-2'>
-              <select id="grind" className='flex w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' type='text' value={grind} onChange={(event)=> {setGrind(event.target.value)}}>
+              <select id="grind" className='flex w-full text-center rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10' type='text' value={grind} onChange={(event)=> {setGrind(event.target.value)}}>
                 <option defaultValue >--Select Grind--</option>
                 <option value="Whole Beans">Whole Beans</option>
                 <option value="Ground">Ground</option>
@@ -66,7 +66,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
               </select>
           </label>
           <label className='my-2'> 
-              <select id="Country" className='flex w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' type='text' value={country} onChange={(event)=> {setCountry(event.target.value)}}>
+              <select id="Country" className='flex w-full text-center rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10' type='text' value={country} onChange={(event)=> {setCountry(event.target.value)}}>
                 <option defaultValue >--Select Country--</option>
                 <option value="Brazil">Brazil</option>
                 <option value="Vietnam">Vietnam</option>
@@ -80,7 +80,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
               </select>
           </label>
           <label className='my-2'>
-              <select id="weight" className='flex w-full text-center rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' type='text' value={weight} onChange={(event)=> {setWeight(event.target.value)}}>
+              <select id="weight" className='flex w-full text-center rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10' type='text' value={weight} onChange={(event)=> {setWeight(event.target.value)}}>
                 <option defaultValue >--Select Weight--</option>
                 <option value="0.25 lb">0.25 lb</option>
                 <option value="0.5 lb">0.5 lb</option>
@@ -91,9 +91,9 @@ const CreateProduct = ({ productsList, setProductsList }) => {
 
           <label className='my-2 '>
           <div className=' lg:flex'>Inventory:</div>
-              <input className='flex rounded-md focus:ring-rose-900 focus:border-rose-900 focus:z-10' value={inventory} type='text' onChange={(event)=> {setInventory(event.target.value)}}/>
+              <input className='flex rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10' value={inventory} type='text' onChange={(event)=> {setInventory(event.target.value)}}/>
           </label>
-          <button className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500" type='submit'>CREATE</button>
+          <button className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-unbleached-silk hover:bg-black-coffee hover:text-xanadu transition duration-300" type='submit'>CREATE</button>
 
       </form>
     </div>

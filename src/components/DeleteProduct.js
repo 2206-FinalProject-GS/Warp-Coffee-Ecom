@@ -15,7 +15,7 @@ const DeleteProduct = ({ myProducts, productId, setMyProducts }) => {
   return (
     <div onClick={handleDelete}>
       <button
-        className="container max-w-fit font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+        className="container max-w-fit font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-unbleached-silk hover:bg-black-coffee hover:text-unbleached-silk transition duration-300"
         type="submit"
         id="deleteProduct"
       >

@@ -7,9 +7,10 @@ import { App } from "./components";
 const root = ReactDOM.createRoot(document.getElementById("app"));
 
 root.render(
-
-  <BrowserRouter>
-    <App  />
-</BrowserRouter>
+<div className="bg-xanadu font-body">
+      <BrowserRouter>
+         <App  />
+      </BrowserRouter>
+</div>
 
 );
