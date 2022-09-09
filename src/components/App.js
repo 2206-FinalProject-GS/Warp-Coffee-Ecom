@@ -13,6 +13,7 @@ import {
   SingleProduct,
   PublicCart,
   OrderHistory,
+  ProductGrind,
 } from ".";
 
 const App = () => {
@@ -102,6 +103,7 @@ const App = () => {
               <SingleProduct isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
             }
           />
+          
         </Routes>
       ) : (
         <Routes>
@@ -122,8 +124,10 @@ const App = () => {
                 carts={carts}
                 setcarts={setCarts}
               />
+             
             }
-          />
+          /> 
+          <Route path="/ProductGrind" element={<ProductGrind/>}/>
           <Route
             path="/publiccart"
             element={
