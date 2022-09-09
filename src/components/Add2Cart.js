@@ -69,7 +69,7 @@ newcart.forEach(object => {
   } 
 
   return (
-    <button className="font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+    <button className="font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md text-unbleached-silk bg-black-coffee hover:bg-black-coffee hover:bg-opacity-80 shadow-gray-700 shadow-lg transition duration-300"
        onClick={() => handleSubmit(productId)}>Add to Cart</button>
     
   );

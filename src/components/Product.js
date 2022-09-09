@@ -23,7 +23,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-t from-rose-300 to-yellow-600 h-screen  flex justify-center items-center pb-24 ">
+    <div className=" h-screen  flex justify-center items-center pb-24 ">
       <div className=" mx-0 py-16 px-4 sm:py-24 sm:px-12 sm:max-h-full lg:max-w-full lg:max-h-full lg:px-9 overflow-y-scroll">
         <div className=" grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-10 xl:max-w-full  ">
           {productsList.map((element, index) => (
@@ -45,7 +45,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
                 <Link
                   to="/SingleProduct"
                   state={{ productId: element.id }}
-                  className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+                  className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md text-unbleached-silk bg-black-coffee hover:bg-black-coffee hover:bg-opacity-80 shadow-gray-700 shadow-lg transition duration-300"
                 >
                   Details
                 </Link>

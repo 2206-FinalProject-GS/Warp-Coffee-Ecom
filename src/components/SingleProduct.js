@@ -18,8 +18,8 @@ const SingleProduct = ({ isAdmin, isLoggedIn }) => {
 
   async function fetchCart() {
     const token = localStorage.getItem("token");
-
-    if (token) {
+    const admin = localStorage.getItem("admin")
+    if (token && !admin) {
       const getUser = await getUsersMe2(token);
       const getTheCart = await getAllCartsByUserId(token, getUser.id);
       setSelectedCart(getTheCart);
@@ -67,42 +67,42 @@ const SingleProduct = ({ isAdmin, isLoggedIn }) => {
   }
 
   return (
-    <section className="text-2xl font-normal body-font overflow-hidden select-none bg-gradient-to-t from-rose-300 to-yellow-600 w-screen h-screen flex justify-center items-center ">
-      <div className="container px-5 py-24 mx-auto bg-black bg-opacity-50 rounded-md shadow-2xl">
-        <div className="lg:w-4/5 mx-auto flex flex-wrap ">
+    <section className="text-base overflow-hidden select-none h-screen flex justify-center items-center">
+      <div className="container py-24 mx-auto bg-black bg-opacity-50 rounded-md shadow-2xl">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0 ">
-            <h2 className="text-sm title-font text-white  tracking-widest">
-              BRAND NAME{" "}
+            <h2 className="text-base text-white  tracking-widest">
+              BRAND NAME:{" "}
             </h2>
-            <h1 className="text-white text-3xl title-font font-medium mb-4">
+            <h1 className="text-white text-3xl my-4">
               {getProduct.name}
             </h1>
             <div className="flex mb-4">
-              <a className="flex-grow text-white border-b-2 border-yellow-600 py-2 text-lg px-1">
+              <a className="flex-grow text-white border-b-2 border-unbleached-silk py-2 text-lg px-1">
                 Description
               </a>
             </div>
-            <p className="leading-relaxed mb-4 text-white ">
+            <p className="leading-relaxed mb-4 text-white">
               {getProduct.description}
             </p>
-            <div className="flex border-t border-gray-200 py-2">
+            <div className="flex border-t border-unbleached-silk py-2">
               <span className="text-white ">Roast</span>
               <span className="ml-auto  text-white">{getProduct.roast}</span>
             </div>
-            <div className="flex border-t border-gray-200 py-2">
+            <div className="flex border-t border-unbleached-silk py-2">
               <span className="text-white ">Grind</span>
               <span className="ml-auto text-white">{getProduct.grind}</span>
             </div>
-            <div className="flex border-t border-gray-200 py-2">
+            <div className="flex border-t border-unbleached-silk py-2">
               <span className="text-white ">Weight</span>
               <span className="ml-auto  text-white">{getProduct.product_wt}</span>
             </div>
-            <div className="flex border-t border-gray-200 py-2">
+            <div className="flex border-t border-unbleached-silk py-2">
               <span className="text-white ">Country</span>
               <span className="ml-auto  text-white">{getProduct.country}</span>
             </div>
 
-            <div className="flex border-t border-gray-200 py-2">
+            <div className="flex border-t border-unbleached-silk py-2">
               <span className="text-white ">Price</span>
               <span className="ml-auto  text-white">${getProduct.price}</span>
             </div>
@@ -110,7 +110,7 @@ const SingleProduct = ({ isAdmin, isLoggedIn }) => {
               <div className="flex">
                 <button
                   onClick={() => handleSubmit(productId)}
-                  className="flex ml-auto text-rose-900 bg-yellow-600 border-0 py-2 px-6 focus:outline-none hover:bg-rose-900 hover:text-yellow-600 rounded transition duration-500"
+                  className="flex ml-auto text-unbleached-silk bg-black-coffee border-2 border-unbleached-silk py-2 px-6 focus:outline-none rounded transition duration-500"
                 >
                   Add To Cart
                 </button>
