@@ -143,6 +143,8 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
                     setProductsList={setProductsList}
                     productId={element.id}
                     productPrice={element.price}
+                    guestCart={guestCart}
+              setGuestCart={setGuestCart}
                   />
                 ) : null}
               </div>
