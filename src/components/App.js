@@ -20,6 +20,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [carts, setCarts] = useState([]);
+  const [guestCart, setGuestCart] = useState([])
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -28,7 +29,11 @@ const App = () => {
     if (localStorage.getItem("admin")) {
       setIsAdmin(true);
     }
-  }, []);
+    if (!isLoggedIn) {
+      localStorage.setItem('cart', JSON.stringify(guestCart))
+   
+    }
+  }, [guestCart]);
   return (
     <div>
       <div>
@@ -121,6 +126,8 @@ const App = () => {
                 isAdmin={isAdmin}
                 carts={carts}
                 setcarts={setCarts}
+                guestCart={guestCart}
+                setGuestCart={setGuestCart}
               />
             }
           />
@@ -131,6 +138,8 @@ const App = () => {
                 carts={carts}
                 setcarts={setCarts}
                 isLoggedIn={isLoggedIn}
+                guestCart={guestCart}
+                setGuestCart={setGuestCart}
               />
             }
           />
