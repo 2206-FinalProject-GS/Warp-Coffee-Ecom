@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DeletePublicItem, PublicSum, UpdatePublicItem } from "./index";
-const PublicCart = ({ isLoggedIn }) => {
-  const [guestCart, setGuestCart] = useState([]);
+const PublicCart = ({ isLoggedIn, guestCart, setGuestCart }) => {
+ 
 
  let navigate = useNavigate()
  async function handleSubmit (){
+  localStorage.removeItem("cart")
  navigate("/")
+
  }
 
   useEffect(() => {
@@ -263,7 +265,7 @@ const PublicCart = ({ isLoggedIn }) => {
                   <button
                     className="rounded-lg bg-black text-sm p-2.5 text-white w-full block animate-bounce"
                     type="submit"
-                    onClick ={handleSubmit}
+                    onClick={handleSubmit}
                   >
                     Pay Now
                   </button>
