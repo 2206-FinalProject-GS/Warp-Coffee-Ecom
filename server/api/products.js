@@ -13,9 +13,9 @@ router.get("/", async (req, res, next) => {
 
   router.post("/", requireMerchant, async (req,res,next) => {
 
-      const {creatorId, name, description, price, inventory, roast, grind, country, product_wt} = req.body
+      const {creatorId, name, description, price, inventory, roast, grind, country, product_wt, image} = req.body
       const productData = {
-        creatorId: req.merchant.id, name, description, price, inventory, roast, grind , inventory, country, product_wt
+        creatorId: req.merchant.id, name, description, price, inventory, roast, grind , inventory, country, product_wt, image
 
       }
       try {
@@ -54,7 +54,7 @@ router.get("/", async (req, res, next) => {
 
   router.patch("/:productId", requireMerchant, async (req,res,next) => {
     const {productId} = req.params;
-    const {creatorId, name, description, price, inventory, roast, grind, country, product_wt} = req.body
+    const {creatorId, name, description, price, inventory, roast, grind, country, product_wt, image} = req.body
     const originalProductId = await getProductById(productId);
     const orginalProductName = await getProductsByName(name);
     try {
@@ -71,7 +71,7 @@ router.get("/", async (req, res, next) => {
       } else {
         const updatedProduct = await updateProduct({productId,
           creatorId: req.merchant.id,
-          name, description, price, inventory, roast, grind, country, product_wt
+          name, description, price, inventory, roast, grind, country, product_wt, image
         });
           
           res.send(updatedProduct);
@@ -89,6 +89,7 @@ router.get("/", async (req, res, next) => {
 
   router.get('/grind=:grind', async (req,res,next )=> {
     const {grind} = req.params
+    console.log(grind,"Show me the API call")
     const getProduct = await getProductsByCategoryGrind(grind)
     res.send(getProduct)
   })
@@ -97,7 +98,7 @@ router.get("/", async (req, res, next) => {
     const getProduct = await getProductsByCategoryRoast(roast)
     res.send(getProduct)
   })
-  router.get('/country=:country', async (req,res,next )=> {
+  router.get('/:country', async (req,res,next )=> {
     const {country} = req.params
     const getProduct = await getProductsByCategoryCountry(country)
     res.send(getProduct)

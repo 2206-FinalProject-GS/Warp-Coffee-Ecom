@@ -10,6 +10,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
   const [roast, setRoast] = useState("");
   const [grind, setGrind] = useState("");
   const [country, setCountry] = useState("");
+  const [image, setImage] = useState("")
   const [inventory, setInventory] = useState(0);
   const [error, setError] = useState(null);
   const navigate = useNavigate();  
@@ -92,6 +93,10 @@ const CreateProduct = ({ productsList, setProductsList }) => {
           <label className='my-2 '>
           <div className=' lg:flex'>Inventory:</div>
               <input className='flex rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10' value={inventory} type='text' onChange={(event)=> {setInventory(event.target.value)}}/>
+          </label>
+          <label className='my-2'>
+          <div className=' lg:flex'>Image URL:</div> 
+              <input className='flex rounded-md focus:ring-black-coffee focus:border-black-coffee focus:z-10 lg:placeholder-transparent md:placeholder-slate-400' type="text" placeholder='Image' value={image} onChange={(event)=> {setImage(event.target.value)}}/>
           </label>
           <button className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-unbleached-silk hover:bg-black-coffee hover:text-xanadu transition duration-300" type='submit'>CREATE</button>
 

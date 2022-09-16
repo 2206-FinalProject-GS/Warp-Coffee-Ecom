@@ -15,6 +15,7 @@ import {
   OrderHistory,
   ProductGrind,
 } from ".";
+import ProductCountry from "./ProductCountry";
 
 const App = () => {
   const [productsList, setProductsList] = useState([]);
@@ -103,7 +104,6 @@ const App = () => {
               <SingleProduct isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
             }
           />
-          
         </Routes>
       ) : (
         <Routes>
@@ -122,12 +122,9 @@ const App = () => {
                 isLoggedIn={isLoggedIn}
                 isAdmin={isAdmin}
                 carts={carts}
-                setcarts={setCarts}
-              />
-             
-            }
-          /> 
-          <Route path="/ProductGrind" element={<ProductGrind/>}/>
+                setcarts={setCarts}/>}/>
+          <Route path="/ProductCountry" element={<ProductCountry   productsList={productsList}
+                setProductsList={setProductsList} />} />
           <Route
             path="/publiccart"
             element={
