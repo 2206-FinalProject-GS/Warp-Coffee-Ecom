@@ -2,27 +2,31 @@ const client = require("./client");
 
 
 async function createImage({URL}) {  
+    console.log("initiating create image")
     try {
       const {
         rows: [image],
       } = await client.query(
         `
-        INSERT INTO imageUrl(URL) 
+        INSERT INTO imageUrl(id) 
         VALUES($1) 
         RETURNING *;
       `,
-        [URL, isProduct]
+        [URL]
       );
       if (!image) {
+        console.log("no image found")
         return null;
       }
-  
+      console.log(image,"finished creating image")
       return image;
     } catch (error) {
       throw error;
     }
   }
   async function getImagebyId(imageId) {
+    console.log("initiating get image by ID")
+
     try {
       const {
         rows: [image],
@@ -32,9 +36,10 @@ async function createImage({URL}) {
       WHERE id =${imageId};
       `);
       if (!image) {
+        console.log("no image found")
         return null;
       }
-
+      console.log("finished getting image")
     return image;
 } catch (error) {
   throw error;

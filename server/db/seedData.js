@@ -16,8 +16,7 @@ async function dropTables() {
        DROP TYPE IF EXISTS productwt;
        DROP TYPE IF EXISTS coffeeCountry;
        DROP TABLE IF EXISTS Merchants;
-       DROP TABLE IF EXISTS users;
-       
+       DROP TABLE IF EXISTS users;    
       DROP TABLE IF EXISTS imageUrl;
       `);
     console.log("Dropping All Tables...");
@@ -37,7 +36,7 @@ async function createTables() {
 
        CREATE TABLE imageUrl (
         id SERIAL PRIMARY KEY,
-        url TEXT
+        url TEXT NOT NULL
         );
 
         CREATE TABLE users (

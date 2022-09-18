@@ -56,6 +56,7 @@ router.get("/", async (req, res, next) => {
     const {productId} = req.params;
     const {creatorId, name, description, price, inventory, roast, grind, country, product_wt, image} = req.body
     const originalProductId = await getProductById(productId);
+    console.log(originalProductId,"Show me the product")
     const orginalProductName = await getProductsByName(name);
     try {
       if (!originalProductId) {
@@ -87,13 +88,13 @@ router.get("/", async (req, res, next) => {
     res.send(getProduct)
   })
 
-  router.get('/grind=:grind', async (req,res,next )=> {
+  router.get('/grind/:grind', async (req,res,next )=> {
     const {grind} = req.params
     console.log(grind,"Show me the API call")
     const getProduct = await getProductsByCategoryGrind(grind)
     res.send(getProduct)
   })
-  router.get('/roast=:roast', async (req,res,next )=> {
+  router.get('/roast/:roast', async (req,res,next )=> {
     const {roast} = req.params
     const getProduct = await getProductsByCategoryRoast(roast)
     res.send(getProduct)
@@ -103,7 +104,7 @@ router.get("/", async (req, res, next) => {
     const getProduct = await getProductsByCategoryCountry(country)
     res.send(getProduct)
   })
-  router.get('/weight=:weight', async (req,res,next )=> {
+  router.get('/weight/:weight', async (req,res,next )=> {
     const {productwt} = req.params
     const getProduct = await getProductsByCategoryWeight(productwt)
     res.send(getProduct)
