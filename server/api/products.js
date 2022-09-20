@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName, getProductsByCategoryGrind, getProductsByCategoryRoast, getProductsByCategoryCountry, getProductsByCategoryWeight } = require("../db/Product");
-const { createImage, updateImageUrl, getImagebyId } = require('../db/imageUrl')
+const { createImage, updateImageUrl, getImagebyId, destroyImage } = require('../db/imageUrl')
 const { requireMerchant } = require("./utils");
 
 
@@ -42,7 +42,10 @@ router.get("/", async (req, res, next) => {
       try {
           const product = await getProductById(productId)
           if (product && product.creatorId === req.merchant.id) {
-              await destroyProduct(productId)
+            console.log(product.image,"show me the image being deleted")
+            const deletedImage = await getImagebyId(product.image);
+              await destroyProduct(productId);
+              await destroyImage(deletedImage.id)
               res.send(product)
           } else {
             res.status(403);

@@ -74,28 +74,31 @@ async function updateImageUrl(imageId, {...fields}) {
       throw error;
     }
   }
-  async function getImageByProduct( imageId ) {
+
+  async function destroyImage(id) {
+    console.log(id,"intiating delete image url")
     try {
-      const { rows: products } = await client.query(
+      const {
+        rows: [image],
+      } = await client.query(
         `
-      SELECT Product.*, Merchants.username AS "creatorName"
-      FROM Product
-      JOIN Merchants ON Product."creatorId" = Merchants.id
-      WHERE username = $1;
-    `,
-        [username]
+      DELETE FROM imageUrl
+      WHERE id = ${id}
+      RETURNING *;
+      `,
       );
-      return products;
+      console.log(image, "DELETING image URL");
+      return image;
     } catch (error) {
-      console.error("Trouble getting products", error);
-    }
-  }
+      throw error;
+    }}
+  
   
   
   module.exports = {
 createImage,
 getImagebyId,
 updateImageUrl,
-getImageByProduct
+destroyImage,
 
 }
