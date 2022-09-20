@@ -6,7 +6,7 @@ import { getProducts } from "../apiAdapter";
 import "../input.css";
 
 
-const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
+const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCart, setGuestCart }) => {
   const [filteredProducts, setFilteredProducts] = useState([])
   const navigate = useNavigate();
 
@@ -57,6 +57,8 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
             setProductsList={setProductsList}
             productId={element.id}
             productPrice={element.price}
+            guestCart={guestCart}
+            setGuestCart={setGuestCart}
           />
         ) : null}
       </div>
@@ -94,6 +96,8 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
               setProductsList={setProductsList}
               productId={element.id}
               productPrice={element.price}
+              guestCart={guestCart}
+              setGuestCart={setGuestCart}
             />
           ) : null}
         </div>
@@ -140,6 +144,8 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
                     setProductsList={setProductsList}
                     productId={element.id}
                     productPrice={element.price}
+                    guestCart={guestCart}
+              setGuestCart={setGuestCart}
                   />
                 ) : null}
               </div>

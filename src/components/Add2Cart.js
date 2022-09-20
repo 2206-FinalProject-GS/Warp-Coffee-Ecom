@@ -7,13 +7,13 @@ import {
 } from "../apiAdapter";
 
 import { useNavigate } from "react-router-dom";
-const AddProductToCart = ({ productsList, productId, productPrice, isLoggedIn }) => {
+const AddProductToCart = ({ productsList, productId, productPrice, isLoggedIn, guestCart, setGuestCart}) => {
 
   const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = useState([]);
   const [selectedCart, setSelectedCart] = useState([]);
   const [error, setError] = useState(null);
-  const [guestCart, setGuestCart] = useState([])
+  
   const navigate = useNavigate();
 
   async function fetchCart() {
@@ -50,6 +50,7 @@ const AddProductToCart = ({ productsList, productId, productPrice, isLoggedIn })
     }
   } else {
     var newcart = localStorage.getItem('cart')
+    console.log(newcart,'the newcart')
     newcart = (newcart) ? JSON.parse(newcart) : []
   
 const newGuestP = productsList.filter(pro => pro.id === productId)
