@@ -19,7 +19,7 @@ const CreateProduct = ({ productsList, setProductsList }) => {
     async function handleSubmit (event) {
         event.preventDefault()
         const token = localStorage.getItem('token')
-        const freshProduct = await createNewProduct(token, name,description, price, roast, grind, inventory, country, weight)
+        const freshProduct = await createNewProduct(token, name,description, price, roast, grind, inventory, country, weight, image)
         if (freshProduct.error) {
             setError(freshProduct)
         } else {

@@ -36,7 +36,7 @@ async function createTables() {
 
        CREATE TABLE imageUrl (
         id SERIAL PRIMARY KEY,
-        url TEXT NOT NULL
+        url TEXT
         );
 
         CREATE TABLE users (
