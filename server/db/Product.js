@@ -10,15 +10,16 @@ async function createProduct({
   roast,
   grind,
   country,
-  product_wt
+  product_wt,
+  image
 }) {
   try {
     const {
       rows: [Products],
     } = await client.query(
       `
-      INSERT INTO Product("creatorId", name, description, price, inventory, roast, grind, country, product_wt) 
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+      INSERT INTO Product("creatorId", name, description, price, inventory, roast, grind, country, product_wt, image) 
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
       RETURNING *;
     `,
       [
@@ -30,7 +31,8 @@ async function createProduct({
         roast,
         grind,
         country,
-        product_wt
+        product_wt,
+        image
       ]
     );
     creatorId,
@@ -41,7 +43,8 @@ async function createProduct({
       roast,
       grind,
       country,
-      product_wt;
+      product_wt,
+      image;
 
     return Products;
   } catch (error) {
@@ -234,6 +237,7 @@ async function getProductsByCategoryGrind(grind) {
 }
 
 async function getProductsByCategoryCountry(country) {
+  console.log("getting products by country")
   try {
     const {
       rows: [Products],

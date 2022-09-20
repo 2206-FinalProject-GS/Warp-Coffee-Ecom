@@ -61,7 +61,8 @@ export const createNewProduct = async (
   grind,
   inventory,
   country,
-  product_wt
+  product_wt,
+  image
 ) => {
   const response = await fetch(`${BASE_URL}/products`, {
     method: "POST",
@@ -77,7 +78,8 @@ export const createNewProduct = async (
       grind,
       inventory,
       country,
-      product_wt
+      product_wt,
+      image
     }),
   });
   const result = await response.json();
@@ -177,7 +179,8 @@ export async function updateProduct(
   grind,
   inventory,
   country,
-  product_wt
+  product_wt,
+  image
 ) {
   const response = await fetch(`${BASE_URL}/products/${productId}`, {
     method: "PATCH",
@@ -194,6 +197,7 @@ export async function updateProduct(
       inventory,
       country,
       product_wt,
+      image,
     }),
   });
   const result = await response.json();
@@ -331,12 +335,12 @@ export const getOrderHistorybyUserId = async (token, userId) => {
   }
 };
 
-export const getProductsByCategoryGrind = async (grind) => {
+export const getProductsByCategoryCountry = async (country) => {
   try {
-    const response = await fetch(`${BASE_URL}/products/grind=${grind}`, {
+    const response = await fetch(`${BASE_URL}/products/${country}`, {
       headers: {
         "Content-Type": "application/json",
-      },
+      }
     });
     const result = await response.json();
     console.log(result,"product category")

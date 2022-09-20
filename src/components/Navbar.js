@@ -97,6 +97,13 @@ const Navbar = ({ setIsLoggedIn, setIsAdmin, isLoggedIn, isAdmin }) => {
           ) : (
             <div className="inline-flex flex-col md:flex-row md:mx-6 gap-x-60  xl:gap-x-20 sm:flex-row justify-end sm:gap-x-20 w-full">
               <NavLink
+                to="/ProductCountry"
+                className="my-1 mr-9 text-base text-gray-200 hover:text-unbleached-silk transition duration-400 md:my-0 "
+              >
+                Product by Country
+              </NavLink>
+              
+              <NavLink
                 to="/login"
                 className="my-1 text-base text-gray-200 hover:text-unbleached-silk transition duration-400"
               >

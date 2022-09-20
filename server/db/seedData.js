@@ -8,7 +8,6 @@ const { addProductToCart } = require("./cartItem");
 async function dropTables() {
   try {
     await client.query(`
-      
        DROP TABLE IF EXISTS cartItem;
       DROP TABLE IF EXISTS Cart;
        DROP TABLE IF EXISTS Product;
@@ -17,8 +16,8 @@ async function dropTables() {
        DROP TYPE IF EXISTS productwt;
        DROP TYPE IF EXISTS coffeeCountry;
        DROP TABLE IF EXISTS Merchants;
-       DROP TABLE IF EXISTS users;
-       
+       DROP TABLE IF EXISTS users;    
+      DROP TABLE IF EXISTS imageUrl;
       `);
     console.log("Dropping All Tables...");
   } catch (error) {
@@ -35,10 +34,16 @@ async function createTables() {
        CREATE TYPE productwt AS ENUM('0.25 lb', '0.5 lb', '1 lb', '5 lb');
        CREATE TYPE coffeeCountry AS ENUM('Brazil','Vietnam','Colombia','Indonesia','Ethiopia','Honduras','India','Uganda');
 
+       CREATE TABLE imageUrl (
+        id SERIAL PRIMARY KEY,
+        url TEXT
+        );
+
         CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         username VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL
+        password VARCHAR(255) NOT NULL,
+        image INTEGER REFERENCES imageUrl(id)
         );
         CREATE TABLE Merchants (
           id SERIAL PRIMARY KEY,
@@ -57,7 +62,8 @@ async function createTables() {
             roast coffeeRoast NOT NULL,
             grind coffeeGrind,
             country coffeeCountry,
-            product_wt productwt NOT NULL     
+            product_wt productwt NOT NULL,
+            image INTEGER REFERENCES imageUrl(id)     
           );
           CREATE TABLE Cart (
             id SERIAL PRIMARY KEY,
@@ -73,6 +79,7 @@ async function createTables() {
             price INTEGER,
             UNIQUE("productId","cartId")
             );
+            
         `);
   } catch (error) {
     throw error;

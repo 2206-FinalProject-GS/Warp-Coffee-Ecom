@@ -9,6 +9,7 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
   const [grind, setGrind] = useState("");
   const [inventory, setInventory] = useState(0);
   const [country, setCountry] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
   const [error, setError] = useState(null);
   const [isShown2, setIsShown2] = useState(false);
 
@@ -28,6 +29,7 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
       inventory,
       country,
       weight,
+      imageUrl,
     );
     if (freshProduct.error) {
       setError(freshProduct);
@@ -44,6 +46,7 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
       setGrind("");
       setWeight("");
       setInventory(0);
+      setImageUrl("")
     }
   }
   useEffect(() => {}, [myProducts]);
@@ -171,6 +174,16 @@ const UpdateProducts = ({ myProducts, setMyProducts, productId }) => {
               type="text"
               onChange={(event) => {
                 setInventory(event.target.value);
+              }}
+            />
+          </label>
+          <label className="">
+            Image Url:
+            <input
+              type="text"
+              value={imageUrl}
+              onChange={(event) => {
+                setImageUrl(event.target.value);
               }}
             />
           </label>
