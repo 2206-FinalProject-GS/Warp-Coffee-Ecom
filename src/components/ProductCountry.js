@@ -62,7 +62,7 @@ const productgrind = productsList.map((element, index) => {
               <option value="Uganda">Uganda</option>
             </select>
           </label>
-    <button id="Category button" type="submit">Grind</button>
+    <button id="Category button" type="submit">Country</button>
     </form>
      <div>
         {productgrind}

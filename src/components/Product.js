@@ -13,6 +13,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
   async function fetchAllProducts() {
     try {
       const newproducts = await getProducts();
+      console.log(newproducts,"show me the product")
 
       setProductsList(newproducts);
     } catch (error) {
@@ -82,6 +83,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
         <p className="text-center mt-1 text-xl font-medium text-gray-900 ">
           ${element.price}
         </p>
+        <p>image:{element.image}</p>
         <div className=" inline-flex text-center items-center w-full gap-14 text-clip">
           <Link
             to="/SingleProduct"
@@ -130,6 +132,8 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
               <p className="text-center mt-1 text-xl font-medium text-gray-900 ">
                 ${element.price}
               </p>
+              <p>{element.image}</p>
+               
               <div className=" inline-flex text-center items-center w-full gap-14 text-clip">
                 <Link
                   to="/SingleProduct"

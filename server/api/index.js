@@ -79,4 +79,8 @@ router.use('/cartOrder', cartItemRouter)
 const CartRouter = require('./Cart')
 router.use('/Cart', CartRouter)
 
+const imageRouter = require('./image')
+router.use('/image', imageRouter)
+
+
 module.exports = router
