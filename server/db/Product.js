@@ -70,22 +70,22 @@ async function getProductById(productId) {
     throw error;
   }
 }
-async function getAllProducts() {
-  try {
-    const { rows: productId } = await client.query(`
-      SELECT id
-      FROM Product;
-    `);
+// async function getAllProducts() {
+//   try {
+//     const { rows: productId } = await client.query(`
+//       SELECT id
+//       FROM Product;
+//     `);
 
-    const products = await Promise.all(
-      productId.map((product) => getProductById(product.id))
-    );
+//     const products = await Promise.all(
+//       productId.map((product) => getProductById(product.id))
+//     );
 
-    return products;
-  } catch (error) {
-    throw error;
-  }
-}
+//     return products;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 async function getProductsByName(name) {
   try {
