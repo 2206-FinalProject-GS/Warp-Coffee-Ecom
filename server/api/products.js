@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router()
-const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName, getProductsByCategoryGrind, getProductsByCategoryRoast, getProductsByCategoryCountry, getProductsByCategoryWeight } = require("../db/Product");
+const { getAllProducts, createProduct, getProductById, destroyProduct, updateProduct, getProductsByName, getProductsByCategoryGrind, getProductsByCategoryRoast, getProductsByCategoryCountry, getProductsByCategoryWeight, getAllImageProducts } = require("../db/Product");
 const { createImage, updateImageUrl, getImagebyId, destroyImage } = require('../db/imageUrl')
 const { requireMerchant } = require("./utils");
 
 
 
 router.get("/", async (req, res, next) => {
-    const product = await getAllProducts();
+  console.log("getting products")
+    const product = await getAllImageProducts();
   console.log(product," API router check Product")
     res.send(product);
   });

@@ -1,4 +1,5 @@
 const client = require("./client");
+const { getImagebyId } = require("./imageUrl");
 const { getMerchantByUsername } = require("./merchant");
 
 async function createProduct({
@@ -258,9 +259,27 @@ async function getProductsByCategoryCountry(country) {
   }
 }
 
+
+async function getAllImageProducts() {
+  console.log("Database: getAllImageProducts")
+  try {
+    const { rows: productId } = await client.query(`
+    SELECT product.*, imageurl.url AS image
+    FROM product
+    LEFT JOIN imageurl ON product.image = imageurl.id 
+    `);
+
+
+    return productId;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
+  getAllImageProducts,
   getProductsByName,
   updateProduct,
   destroyProduct,
