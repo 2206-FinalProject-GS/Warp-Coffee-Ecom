@@ -20,7 +20,7 @@ const DeleteCartItem = ({ setCartItems, cartItems, cartItemId }) => {
   return (
     <div className="">
       <button
-        className="bg-yellow-500 hover:bg-yellow-400 text-rose-900 font-medium py-0 px-1 rounded-3xl relative bottom-7 right-2 hover:animate-pulse"
+        className="bg-slate-400 hover:bg-black-coffee hover:text-unbleached-silk transition duration-300 font-medium py-0 px-1 rounded-3xl relative bottom-7 right-2 hover:animate-pulse"
         onClick={handleDelete}
       >
         X

@@ -47,7 +47,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
         <Link
           to="/SingleProduct"
           state={{ productId: element.id }}
-          className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+          className="container font-medium mt-2 px-4 py-1 text-unbleached-silk bg-black-coffee hover:bg-black-coffee hover:bg-opacity-80 shadow-gray-700 shadow-lg transition duration-300"
         >
           Details
         </Link>
@@ -86,7 +86,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
           <Link
             to="/SingleProduct"
             state={{ productId: element.id }}
-            className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+            className="container font-medium mt-2 px-4 py-1 text-unbleached-silk bg-black-coffee hover:bg-black-coffee hover:bg-opacity-80 shadow-gray-700 shadow-lg transition duration-300"
           >
             Details
           </Link>
@@ -117,10 +117,10 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
 
           {productsList.map((element, index) => (
             <div key={`Product ${index}`} className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-800 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8 group-hover:shadow-2xl xl:max-w-sm ">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-800 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8 xl:max-w-sm ">
                 <img
                   src={require("./Logo/coffeeBag.jpg")}
-                  className=" xl:max-w-full h-full object-center object-cover  group-hover:scale-150 transition duration-500"
+                  className=" xl:max-w-full h-full object-center object-cover"
                 />
               </div>
 
@@ -134,7 +134,7 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin, guestCar
                 <Link
                   to="/SingleProduct"
                   state={{ productId: element.id }}
-                  className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md text-unbleached-silk bg-black-coffee hover:bg-black-coffee hover:bg-opacity-80 shadow-gray-700 shadow-lg transition duration-300"
+                  className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-unbleached-silk hover:bg-black-coffee hover:text-unbleached-silk transition duration-300"
                 >
                   Details
                 </Link>

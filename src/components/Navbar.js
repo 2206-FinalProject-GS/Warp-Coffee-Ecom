@@ -16,9 +16,9 @@ const Navbar = ({ setIsLoggedIn, setIsAdmin, isLoggedIn, isAdmin }) => {
     navigate("/");
   }
   //  const [cartItems, setCartItems] = useState([])
+  //  const token = localStorage.getItem("token");
 
   //  async function fetchCart() {
-  //   const token = localStorage.getItem("token");
   //    if (token) {
 
   //   const getUser = await getUsersMe2(token);

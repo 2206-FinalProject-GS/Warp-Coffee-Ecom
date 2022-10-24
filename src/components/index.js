@@ -34,3 +34,5 @@ export {default as ProductCountry} from './ProductCountry'
 
 export {default as Search} from './Search'
 
+export {default as Confirmation} from './Confirmation'
+
