@@ -8,14 +8,15 @@ import Confirmation from "./Confirmation";
 
 import React, { useState, useEffect } from "react";
 
-const CartCheckout = ({ setCartItems }) => {
+const CartCheckout = ({ cartItems }) => {
   const [isShown3, setIsShown3] = useState(false);
 
 
 
-  async function buttonClick3() {
+  async function buttonClick3(event) {
     event.preventDefault();
     setIsShown3((current) => !current);
+
   }
 
   useEffect(() => {}, []);
@@ -25,7 +26,7 @@ const CartCheckout = ({ setCartItems }) => {
       <button  id="checkout" onClick={buttonClick3}>
         CHECKOUT
       </button>
-      {isShown3 && (<Confirmation isShown3={isShown3} closeModal={() => setIsShown3(false)}/>)}
+      {isShown3 && (<Confirmation isShown3={isShown3} closeModal={() => setIsShown3(false)} cartItems={cartItems}/>)}
     </div>
   );
 };

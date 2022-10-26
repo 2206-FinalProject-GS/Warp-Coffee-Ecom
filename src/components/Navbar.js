@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { HomeIcon } from '@heroicons/react/solid';
-import { getCartItemsbyUserId, getUsersMe2 } from "../apiAdapter";
+import { getCartItemsbyUserId, getUsersMe2,getAllCartsByUserId } from "../apiAdapter";
 import { useState, useEffect } from "react";
 
 const Navbar = ({ setIsLoggedIn, setIsAdmin, isLoggedIn, isAdmin }) => {
@@ -15,24 +15,26 @@ const Navbar = ({ setIsLoggedIn, setIsAdmin, isLoggedIn, isAdmin }) => {
     setIsAdmin(false);
     navigate("/");
   }
-  //  const [cartItems, setCartItems] = useState([])
-  //  const token = localStorage.getItem("token");
+   const [cartItems, setCartItems] = useState([])
 
-  //  async function fetchCart() {
-  //    if (token) {
+   const token = localStorage.getItem("token");
 
-  //   const getUser = await getUsersMe2(token);
-  //   const getCartItems = await getCartItemsbyUserId(getUser.id);
-  //   setCartItems(getCartItems);
-  //    }
-  // }
+   async function fetchCart() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const getUser = await getUsersMe2(token);
+      const getCart = await getAllCartsByUserId(token, getUser.id);
+      const getCartItems = await getCartItemsbyUserId(getCart.id);
+      setCartItems(getCartItems);
+    }
+  }
 
-  // console.log(cartItems.length)
+  console.log(cartItems.length)
 
-  // useEffect(() => {
-  //   if (token)
-  //   fetchCart();
-  // }, []);
+  useEffect(() => {
+    if (token)
+    fetchCart();
+  },[cartItems.length]);
 
   return (
     <nav className="bg-black-coffee select-none shadow-lg ">
@@ -90,7 +92,7 @@ const Navbar = ({ setIsLoggedIn, setIsAdmin, isLoggedIn, isAdmin }) => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="absolute top-0 left-0 rounded-full bg-xanadu text-white p-1 text-xs"></span>
+                <span className="absolute top-0 left-0 rounded-full bg-xanadu text-white p-1 text-xs">{cartItems.map(item => item.quantity).reduce((prev, curr) => prev + curr, 0)}</span>
               </Link>
 
             </div>

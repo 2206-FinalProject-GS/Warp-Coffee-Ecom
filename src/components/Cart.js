@@ -6,7 +6,6 @@ import {
   UpdateCartItem,
   CartCheckout,
   Sum,
-  Confirmation
 } from "./index";
 import {
   getUsersMe2,
@@ -17,6 +16,7 @@ import {
 const Cart = ({ isLoggedIn }) => {
   const [cartItems, setCartItems] = useState([]);
   const [guestCart, setGuestCart] = useState([]);
+  
   async function fetchCart() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -24,6 +24,7 @@ const Cart = ({ isLoggedIn }) => {
       const getCart = await getAllCartsByUserId(token, getUser.id);
       const getCartItems = await getCartItemsbyUserId(getCart.id);
       setCartItems(getCartItems);
+      console.log(cartItems)
     }
   }
 
@@ -263,7 +264,7 @@ const Cart = ({ isLoggedIn }) => {
                 </fieldset>
 
                 <div className="col-span-6 bg-gray-800 rounded-md text-slate-200 text-center">
-                    <CartCheckout setCartItems={setCartItems} />
+                    <CartCheckout cartItems={cartItems} />
                 </div>
               </form>
             </div>
