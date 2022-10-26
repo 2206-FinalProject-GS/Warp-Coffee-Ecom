@@ -1,4 +1,5 @@
 const client = require("./client");
+const { getImagebyId } = require("./imageUrl");
 const { getMerchantByUsername } = require("./merchant");
 
 async function createProduct({
@@ -69,22 +70,22 @@ async function getProductById(productId) {
     throw error;
   }
 }
-async function getAllProducts() {
-  try {
-    const { rows: productId } = await client.query(`
-      SELECT id
-      FROM Product;
-    `);
+// async function getAllProducts() {
+//   try {
+//     const { rows: productId } = await client.query(`
+//       SELECT id
+//       FROM Product;
+//     `);
 
-    const products = await Promise.all(
-      productId.map((product) => getProductById(product.id))
-    );
+//     const products = await Promise.all(
+//       productId.map((product) => getProductById(product.id))
+//     );
 
-    return products;
-  } catch (error) {
-    throw error;
-  }
-}
+//     return products;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 async function getProductsByName(name) {
   try {
@@ -258,9 +259,27 @@ async function getProductsByCategoryCountry(country) {
   }
 }
 
+
+async function getAllImageProducts() {
+  console.log("Database: getAllImageProducts")
+  try {
+    const { rows: productId } = await client.query(`
+    SELECT product.*, imageurl.url AS image
+    FROM product
+    LEFT JOIN imageurl ON product.image = imageurl.id 
+    `);
+
+
+    return productId;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
+  getAllImageProducts,
   getProductsByName,
   updateProduct,
   destroyProduct,
