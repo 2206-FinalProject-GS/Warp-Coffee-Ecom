@@ -19,7 +19,7 @@ const DeleteProduct = ({ myProducts, productId, setMyProducts }) => {
         type="submit"
         id="deleteProduct"
       >
-        DELETE
+        Delete
       </button>
     </div>
   );

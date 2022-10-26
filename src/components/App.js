@@ -13,7 +13,6 @@ import {
   SingleProduct,
   PublicCart,
   OrderHistory,
-  ProductGrind,
 } from ".";
 import ProductCountry from "./ProductCountry";
 
@@ -59,14 +58,14 @@ const App = () => {
                 isLoggedIn={isLoggedIn}
                 isAdmin={isAdmin}
                 carts={carts}
-                setcarts={setCarts}
+                setCarts={setCarts}
               />
             }
           />
           <Route
             path="/cart"
             element={
-              <Cart carts={carts} setcarts={setCarts} isLoggedIn={isLoggedIn} />
+              <Cart carts={carts} setCarts={setCarts} isLoggedIn={isLoggedIn} />
             }
           />
           <Route
@@ -98,7 +97,7 @@ const App = () => {
                 isLoggedIn={isLoggedIn}
                 isAdmin={isAdmin}
                 carts={carts}
-                setcarts={setCarts}
+                setCarts={setCarts}
               />
             }
           />
@@ -127,7 +126,7 @@ const App = () => {
                 isLoggedIn={isLoggedIn}
                 isAdmin={isAdmin}
                 carts={carts}
-                setcarts={setCarts}
+                setCarts={setCarts}
                 guestCart={guestCart}
                 setGuestCart={setGuestCart}
               />
@@ -136,14 +135,13 @@ const App = () => {
           /> 
           <Route path="/ProductCountry" element={<ProductCountry   productsList={productsList}
                 setProductsList={setProductsList} />} />
-  
           
           <Route
             path="/publiccart"
             element={
               <PublicCart
                 carts={carts}
-                setcarts={setCarts}
+                setCarts={setCarts}
                 isLoggedIn={isLoggedIn}
                 guestCart={guestCart}
                 setGuestCart={setGuestCart}

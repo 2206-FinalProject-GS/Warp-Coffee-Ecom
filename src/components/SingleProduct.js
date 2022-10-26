@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import {
   getProductsById,
   addProductsToCart,
   getUsersMe2,
   getAllCartsByUserId,
 } from "../apiAdapter";
+import {ArrowLeftIcon, ArrowSmLeftIcon} from '@heroicons/react/solid'
+
 const SingleProduct = ({ isAdmin, isLoggedIn }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedCart, setSelectedCart] = useState([]);
@@ -68,7 +70,8 @@ const SingleProduct = ({ isAdmin, isLoggedIn }) => {
 
   return (
     <section className="text-base overflow-hidden select-none h-screen flex justify-center items-center">
-      <div className="container py-24 mx-auto bg-black bg-opacity-50 rounded-md shadow-2xl">
+      <div className="container py-16 mx-auto bg-black bg-opacity-50 rounded-md shadow-2xl">
+      <ArrowLeftIcon className="w-6 h-6 ml-8 relative bottom-6 text-gray-100 cursor-pointer" onClick={() => history.back()} />
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0 ">
             <h2 className="text-base text-white  tracking-widest">
@@ -107,10 +110,10 @@ const SingleProduct = ({ isAdmin, isLoggedIn }) => {
               <span className="ml-auto  text-white">${getProduct.price}</span>
             </div>
             {isAdmin ? null : (
-              <div className="flex">
+              <div className="flex justify-center">
                 <button
                   onClick={() => handleSubmit(productId)}
-                  className="flex ml-auto text-unbleached-silk bg-black-coffee border-2 border-unbleached-silk py-2 px-6 focus:outline-none rounded transition duration-500"
+                  className=" bg-unbleached-silk hover:bg-black-coffee hover:text-unbleached-silk transition duration-300 font-medium mt-2 px-4 py-1 rounded-md "
                 >
                   Add To Cart
                 </button>

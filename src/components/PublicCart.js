@@ -74,7 +74,7 @@ const PublicCart = ({ isLoggedIn, guestCart, setGuestCart }) => {
   });
 
   return (
-    <section className=" flex shrink-0 justify-center items-center h-screen bg-gradient-to-t from-rose-300 to-yellow-600 ">
+    <section className=" flex shrink-0 justify-center items-center h-screen ">
       <div className="relative w-full max-w-screen-2xl shadow-2xl  ">
         <div className="grid grid-cols-1 md:grid-cols-2 ">
           <div className="py-12 bg-gray-100 bg-opacity-80 md:py-24 rounded-l-lg  ">

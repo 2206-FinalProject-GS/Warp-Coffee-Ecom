@@ -16,7 +16,7 @@ import {
 const Cart = ({ isLoggedIn }) => {
   const [cartItems, setCartItems] = useState([]);
   const [guestCart, setGuestCart] = useState([]);
-
+  
   async function fetchCart() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -24,6 +24,7 @@ const Cart = ({ isLoggedIn }) => {
       const getCart = await getAllCartsByUserId(token, getUser.id);
       const getCartItems = await getCartItemsbyUserId(getCart.id);
       setCartItems(getCartItems);
+      console.log(cartItems)
     }
   }
 
@@ -34,6 +35,8 @@ const Cart = ({ isLoggedIn }) => {
     }
     fetchCart();
   }, []);
+
+
 
   console.log(guestCart, "guest");
 
@@ -77,7 +80,7 @@ const Cart = ({ isLoggedIn }) => {
   });
 
   return (
-    <section className=" flex shrink-0 justify-center items-center h-screen bg-gradient-to-t from-rose-300 to-yellow-600 select-none overflow-auto">
+    <section className=" flex shrink-0 justify-center items-center h-screen select-none overflow-auto">
       <div className="relative w-full max-w-screen-2xl shadow-2xl  ">
         <div className="grid grid-cols-1 md:grid-cols-2 ">
           <div className="py-12 bg-gray-100 bg-opacity-80 md:py-24 rounded-l-lg ">
@@ -260,10 +263,8 @@ const Cart = ({ isLoggedIn }) => {
                   </div>
                 </fieldset>
 
-                <div className="col-span-6">
-                  <button className="rounded-lg bg-black text-sm p-2.5 text-white w-full block animate-bounce">
-                    <CartCheckout setCartItems={setCartItems} />
-                  </button>
+                <div className="col-span-6 bg-gray-800 rounded-md text-slate-200 text-center">
+                    <CartCheckout cartItems={cartItems} />
                 </div>
               </form>
             </div>

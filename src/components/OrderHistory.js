@@ -54,7 +54,7 @@ const OrderHistory = ({isLoggedIn}) => {
   });
 
   return (
-    <section className=" flex flex-col bg-gradient-to-t from-rose-300 to-yellow-600 select-none px-4 h-screen justify-center">
+    <section className=" flex flex-col select-none px-4 h-screen justify-center">
       <div className="h-4/6 shadow-2xl border bg-gray-500 rounded-lg overflow-y-scroll">
               {item}
       </div>

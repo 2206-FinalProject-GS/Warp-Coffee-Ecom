@@ -3,28 +3,30 @@ import {
   getUsersMe2,
   userCartCheckout,
 } from "../apiAdapter";
-import React, { useEffect } from "react";
 
-const CartCheckout = ({ setCartItems }) => {
-  async function handleCheckout(event) {
+import Confirmation from "./Confirmation";
+
+import React, { useState, useEffect } from "react";
+
+const CartCheckout = ({ cartItems }) => {
+  const [isShown3, setIsShown3] = useState(false);
+
+
+
+  async function buttonClick3(event) {
     event.preventDefault();
-    const token = localStorage.getItem("token");
-    const getUser = await getUsersMe2(token);
-    console.log(getUser, "Show me the user for Cart Checkout");
-    const getCart = await getAllCartsByUserId(token, getUser.id);
-    console.log("New Cart", getCart);
-    await userCartCheckout(token, getCart.id);
-    location.reload();
+    setIsShown3((current) => !current);
+
   }
 
-  useEffect(() => {
-    handleCheckout;
-  }, []);
+  useEffect(() => {}, []);
+
   return (
-    <div onClick={handleCheckout}>
-      <button type="submit" id="checkout">
+    <div>
+      <button  id="checkout" onClick={buttonClick3}>
         CHECKOUT
       </button>
+      {isShown3 && (<Confirmation isShown3={isShown3} closeModal={() => setIsShown3(false)} cartItems={cartItems}/>)}
     </div>
   );
 };

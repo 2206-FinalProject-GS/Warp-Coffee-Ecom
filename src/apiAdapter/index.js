@@ -234,7 +234,7 @@ export const getAllCartsByUserId = async (token, userId) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    throw error;
+    throw (error);
   }
 };
 
